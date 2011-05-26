@@ -119,8 +119,16 @@ YNAutocompleteInput.prototype.add_li = function( key, value, animate ) {
   
   text = document.createTextNode( value );
 
+  var url;
+
   if ( this.metadata.item_route ) {
-    url = this.metadata.item_route + '?id=' + key;
+    if ( this.metadata.item_route.indexOf( '999999' ) == -1 ) {
+      url = this.metadata.item_route + '?id=' + key;
+    }
+    else {
+      url = this.metadata.item_route.replace('999999', key);
+    }
+    
     link = document.createElement( 'a' );
     link.href = url;
     link.target = '_blank';
